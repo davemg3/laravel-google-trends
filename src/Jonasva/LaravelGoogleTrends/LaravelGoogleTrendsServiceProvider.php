@@ -33,7 +33,7 @@ class LaravelGoogleTrendsServiceProvider extends ServiceProvider
 	public function register()
 	{
 		//$this->app['laravel-google-trends'] = $this->app->share(function($app)
-        	$this->app->singleton('jonasva/laravel-google-trends',function($app)
+        	$this->app->singleton('laravel-google-trends',function($app)
 		{
 			return new LaravelGoogleTrends($app['config']);
 		});
