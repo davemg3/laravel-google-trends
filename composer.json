@@ -15,7 +15,7 @@
         "jonasva/google-trends": "dev-fixupdate"
     },
   "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Jonasva\\LaravelGoogleTrends\\": "src"
         } 
     },
