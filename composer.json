@@ -12,7 +12,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "~5.0",
-        "davemg3/google-trends": "dev-master"
+        "jonasva/google-trends": "dev-fixupdate"
     },
   "autoload": {
         "psr-0": {
