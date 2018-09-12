@@ -31,19 +31,21 @@ class LaravelGoogleTrends
      */
     public function __construct(Repository $config)
     {
-        $this->config = $config;
+        $this->config = $config['laravel-google-trends'];
+        //$this->config = $config;
 
         $sessionConfig = [
-            'email'     =>  $this->config->get('laravel-google-trends::username'),
-            'password'  =>  $this->config->get('laravel-google-trends::password'),
-            'recovery-email'    =>  $this->config->get('laravel-google-trends::recovery-email'),
+            'email'     =>  $this->config['username'],
+            'password'  =>  $this->config['password'],
+            'recovery-email'    =>  $this->config['recovery-email'],
         ];
 
-        $sessionCacheName = $this->determineCacheName(['sessionCache', $this->config->get('laravel-google-trends::username')]);
+        $sessionCacheName = $this->determineCacheName(['sessionCache', $this->config['username']]);
 
         if ($this->useSessionCache() && Cache::has($sessionCacheName)) {
             $cookieJar = Cache::get($sessionCacheName);
             $this->session = new GoogleSession($sessionConfig);
+
             $this->session->setCookieJar($cookieJar);
 
             // double check if we are authenticated
@@ -52,11 +54,12 @@ class LaravelGoogleTrends
             }
         }
         else {
+        
             $this->session = (new GoogleSession($sessionConfig))->authenticate();
             $cookieJar = $this->session->getCookieJar();
 
             if ($this->useSessionCache()) {
-                Cache::put($sessionCacheName, $cookieJar, $this->config->get('laravel-google-trends::session-cache-lifetime'));
+                Cache::put($sessionCacheName, $cookieJar, $this->config['session-cache-lifetime']);
             }
         }
     }
@@ -108,6 +111,7 @@ class LaravelGoogleTrends
      */
     public function performRequest(array $parameters)
     {
+
         $cacheName = $this->determineCacheName($parameters);
 
         if ($this->useCache() && Cache::has($cacheName)) {
@@ -159,7 +163,7 @@ class LaravelGoogleTrends
             $response = $request->send();
 
             if ($this->useCache()) {
-                Cache::put($cacheName, $response, $this->config->get('laravel-google-trends::api-call-cache-lifetime'));
+                Cache::put($cacheName, $response, $this->config['api-call-cache-lifetime']);
             }
         }
 
@@ -185,7 +189,7 @@ class LaravelGoogleTrends
      */
     private function useCache()
     {
-        return $this->config->get('laravel-google-trends::api-call-cache-lifetime') > 0;
+        return $this->config['api-call-cache-lifetime'] > 0;
     }
 
     /**
@@ -195,6 +199,6 @@ class LaravelGoogleTrends
      */
     private function useSessionCache()
     {
-        return $this->config->get('laravel-google-trends::session-cache-lifetime') > 0;
+        return $this->config['session-cache-lifetime'] > 0;
     }
 } 
