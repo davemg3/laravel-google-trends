@@ -11,12 +11,19 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4.0",
+        "illuminate/support": "~5.0",
         "jonasva/google-trends": "dev-master"
     },
-    "autoload": {
+  "autoload": {
         "psr-0": {
             "Jonasva\\LaravelGoogleTrends": "src/"
         } 
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jonasva\\LaravelGoogleTrends\\LaravelGoogleTrendsServiceProvider"
+            ]
+        }
     }
 }
