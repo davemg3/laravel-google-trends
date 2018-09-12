@@ -19,7 +19,10 @@ class LaravelGoogleTrendsServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		$this->package('jonasva/laravel-google-trends', 'laravel-google-trends');
+		//$this->package('jonasva/laravel-google-trends', 'laravel-google-trends');
+        	$this->publishes([
+           		 __DIR__.'/../config/google-trends.php' => config_path('google-trends.php'),
+       		 ], 'config');
 	}
 
 	/**
@@ -29,7 +32,8 @@ class LaravelGoogleTrendsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app['laravel-google-trends'] = $this->app->share(function($app)
+		//$this->app['laravel-google-trends'] = $this->app->share(function($app)
+        	$this->app->singleton('jonasva/laravel-google-trends',function($app)
 		{
 			return new LaravelGoogleTrends($app['config']);
 		});
