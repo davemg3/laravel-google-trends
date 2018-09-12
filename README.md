@@ -1,4 +1,4 @@
-# Laravel Google Trends unofficial API
+# Laravel Google Trends unofficial API (Obsolete as Google endpoints have changed)
 
 Laravel google trends provides an easy way to make queries to Google Trends. It is based on this package: https://github.com/jonasva/google-trends.
 
