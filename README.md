@@ -37,7 +37,8 @@ A Facade for easy access is also included. You can register the facade in the `a
 Run this on the command line from the root of your project:
 
 ~~~
-$ php artisan config:publish jonasva/laravel-google-trends
+
+$ php artisan vendor:publish jonasva/laravel-google-trends
 ~~~
 
 A configuration file will be published to `app/config/packages/jonasva/laravel-google-trends/config.php`
