@@ -21,7 +21,7 @@ class LaravelGoogleTrendsServiceProvider extends ServiceProvider
 	{
 		//$this->package('jonasva/laravel-google-trends', 'laravel-google-trends');
         	$this->publishes([
-           		 __DIR__.'/../../config/google-trends.php' => config_path('google-trends.php'),
+           		 __DIR__.'/../../config/laravel-google-trends.php' => config_path('laravel-google-trends.php'),
        		 ], 'config');
 	}
 
